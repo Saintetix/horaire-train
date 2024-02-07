@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    response = connect_api_sncf()
+    # response = call_api_sncf()
     routes = get_routes()
 
     return (
@@ -15,9 +15,9 @@ def index():
             + str(routes.json())
         )
 
-def connect_api_sncf():
+def call_api_sncf(seed=''):
     try:
-        url = 'https://api.sncf.com/v1'
+        url = 'https://api.sncf.com/v1'+str(seed)
         token = 'aca917c8-7a2b-4053-ad13-391398c7c4ba'
         response = requests.get(url, auth=(token, ''))
 
@@ -30,9 +30,7 @@ def connect_api_sncf():
 def get_routes():
     try:
         now = datetime.now().strftime("%Y%m%dT%H%M%S")
-        url = 'https://api.sncf.com/v1/coverage/sncf/journeys?from=stop_area%3ASNCF%3A87723197&to=stop_area%3ASNCF%3A87726000'
-        token = 'aca917c8-7a2b-4053-ad13-391398c7c4ba'
-        response = requests.get(url, auth=(token, ''))
+        response = call_api_sncf('coverage/sncf/journeys?from=stop_area%3ASNCF%3A87723197&to=stop_area%3ASNCF%3A87726000')
 
         print('GET ROUTES = ' + str(response))
 
