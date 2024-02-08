@@ -12,11 +12,24 @@
 		rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<h1>Horaire train</h1>
+	<h1></h1>
     <form action="" method="get">
-        Gare de départ: <input type="text" name="from_stop_area">
+        Gare de départ: <input type="text" name="from_stop_area" id="stop_area">
         Gare de d'arrivé: <input type="text" name="to_stop_area">
         <input type="submit" value="Afficher le prochain train">
     </form>
+
+	<script>
+		$( function() {
+		  var availableTags = [
+			  {% for stop_area in stop_areas %}
+				  "{{stop_areas }}",
+			  {% endfor %}
+		  ];
+		  $( "#tags" ).autocomplete({
+			source: availableTags
+		  });
+		} );
+	</script>
 </body>
 </html>
