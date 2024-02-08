@@ -13,26 +13,10 @@
 </head>
 <body>
 	<h1>Horaire train</h1>
-	<input type="text" id="tags">
-
     <form action="" method="get">
         Gare de départ: <input type="text" name="from_stop_area">
         Gare de d'arrivé: <input type="text" name="to_stop_area">
         <input type="submit" value="Afficher le prochain train">
     </form>
-
-	<script>
-$( function() {
-	var availableTags = [
-		{% for language in languages %}
-			"{{language}}",
-		{% endfor %}
-	];
-	$( "#tags" ).autocomplete({
-	source: availableTags
-	});
-} );
-</script>
-
 </body>
 </html>
